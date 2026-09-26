@@ -9,21 +9,28 @@ https://docs.djangoproject.com/en/6.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.1/ref/settings/
 """
-
+import environ
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+env = environ.Env()
+environ.Env.read_env(BASE_DIR / '.env')
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
+SECRET_KEY = env('SECRET_KEY')
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-_h*(dl7&v7(!%h4l1yifrti&1($e+8!lh^iusjz%!a3u876_nr'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+MAILERS = {
+    'default': {
+        'BACKEND': 'django.core.mail.backends.smtp.EmailBackend',
+        'HOST': '://gmail.com',
+        'PORT': 587,
+        'USE_TLS': True,
+        'USERNAME': env('EMAIL_USER', default=''),
+        'PASSWORD': env('EMAIL_PASSWORD', default=''),
+    }
+}
+DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = []
 
