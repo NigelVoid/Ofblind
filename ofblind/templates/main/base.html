@@ -6,9 +6,14 @@
 </head>
 <body>
     <header>
-        {% if not user.is_autheticated %}
+        {% if not user.is_authenticated %}
         <a href="{% url 'main:who_register' %}">Зарегистрироваться</a>
         <a href="{% url 'main:who_login' %}">Войти</a>
+        {% else %}
+        <nav>
+            <a>{{ request.user }}</a>
+            <a href="{% url 'users:logout' %}">выйти</a>
+        </nav>
         {% endif %}
     </header>
     <main>
