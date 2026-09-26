@@ -67,3 +67,20 @@ pip freeze > requirements.txt
 * `ofblind/` — папка с главными конфигурационными файлами проекта.
 * `main/` — основное приложение сайта (логика, представления, шаблоны).
 * `manage.py` — утилита командной строки Django для управления проектом.
+
+---
+# Полезные фишки-шаблоны
+
+## Удаление пользователя из базы данных
+
+```bash
+python manage.py shell
+```
+> [!NOTE]
+> Вписать в username= желаемого пользователя
+```bash
+from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.filter(username='').delete()
+```
+```bash
+exit()
+```
