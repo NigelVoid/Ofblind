@@ -40,7 +40,16 @@ python manage.py migrate
 ```bash
 python manage.py createsuperuser
 ```
+### 6. Создание файла окружения .env (в папке проекта Django рядом с manage.py)
+>[!WARNING]
+>Обязательно меняйте данные на свои!
 
+```
+SECRET_KEY=yoursecretkey (секретный ключ шифрования)
+EMAIL_USER=yourmail@email.com (почта с которой будут рассылаться письма)
+EMAIL_PASSWORD=xxxx xxxx xxxx xxxx
+DEBUG=True (При разработке обязательно значение True)
+```
 ---
 
 ## Ежедневный запуск проекта
