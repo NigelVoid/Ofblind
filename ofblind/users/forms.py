@@ -6,9 +6,17 @@ from django.core.exceptions import ValidationError
 User = get_user_model()
 
 class RegisterForm(UserCreationForm):
-    class Meta(UserCreationForm.Meta):
-        fields = UserCreationForm.Meta.fields + ('email',)
-        email = forms.EmailField(required=True)
+    email = forms.EmailField(required=True, label="Электронная почта")
+
+    status = forms.ChoiceField(
+        choices=User.USER_STATUS_CHOICES,
+        required=True, 
+        label="Статус профиля"
+    )
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'status')
 
     def clean_username(self):
         username = self.cleaned_data.get('username')
