@@ -45,11 +45,14 @@ python manage.py createsuperuser
 
 ## Ежедневный запуск проекта
 
-
+>[!WARNING]
+>Команда запускается из папки проекта, в которой лежит .venv
 ```bash
 # 1. Активировать окружение
 source .venv/bin/activate
 ```
+>[!WARNING]
+>Команда запускается из папки проекта Django!(где лежит manage.py)
 ```bash
 # 2. Запустить сервер разработки
 python manage.py runserver
