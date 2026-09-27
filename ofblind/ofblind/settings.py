@@ -129,8 +129,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-
-
 LOGIN_REDIRECT_URL = 'main:home'
-
 AUTH_USER_MODEL = 'users.CustomUser'
+
+PASSWORD_RESET_TIMEOUT = 1800 

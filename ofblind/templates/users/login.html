@@ -2,4 +2,5 @@
 {% block content %}
 {{ form.as_p }}
 <button type="submit">Войти</button>
+<p><a href="{% url 'users:password_reset' %}">Забыли пароль?</a></p>
 {% endblock %}
