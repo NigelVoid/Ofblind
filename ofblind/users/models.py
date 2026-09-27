@@ -5,7 +5,7 @@ from django.db import models
 class CustomUser(AbstractUser):
     USER_STATUS_CHOICES = [
         ('applicant', 'Соискатель'),
-        ('employer', 'Работодатель'),
+        ('employer', 'РАБотодатель'),
     ]
 
     status = models.CharField(choices=USER_STATUS_CHOICES, 

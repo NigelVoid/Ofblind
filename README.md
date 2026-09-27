@@ -49,7 +49,8 @@ python manage.py createsuperuser
 ```bash
 # 1. Активировать окружение
 source .venv/bin/activate
-
+```
+```bash
 # 2. Запустить сервер разработки
 python manage.py runserver
 ```
