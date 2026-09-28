@@ -9,9 +9,9 @@ from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.contrib.auth import logout
 from django.contrib.auth.views import LoginView
-from django.views.generic import FormView
+from django.views.generic import FormView, DetailView
 from django.views import View
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_list_or_404
 from django.urls import reverse_lazy
 from .forms import RegisterForm
 from django.conf import settings
@@ -70,3 +70,18 @@ def activate_view(request, uidb64, token):
 
 def register_done_view(request):
     return render(request, 'users/register_done.html')
+
+class ProfileDetailView(DetailView):
+    model = User
+    template_name = 'users/profile.html'
+    context_object_name = 'profile_user' 
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user_obj = self.get_object()
+        
+        if user_obj.status == 'applicant' and hasattr(user_obj, 'applicant_profile'):
+            skills_str = user_obj.applicant_profile.skills
+            if skills_str:
+                context['skills_list'] = [s.strip() for s in skills_str.split(',') if s.strip()]
+        return context

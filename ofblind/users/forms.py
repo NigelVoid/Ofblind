@@ -14,9 +14,15 @@ class RegisterForm(UserCreationForm):
         label="Статус профиля"
     )
 
+    github_username = forms.CharField(
+        required=False, 
+        max_length=100, 
+        label="Ваш никнейм на GitHub"
+    )
+
     class Meta:
         model = User
-        fields = ('username', 'email', 'status')
+        fields = ('username', 'email', 'status', 'github_username')
 
     def clean_username(self):
         username = self.cleaned_data.get('username')
@@ -35,4 +41,12 @@ class RegisterForm(UserCreationForm):
         user.is_active = False
         if commit:
             user.save()
+
+            if user.status == 'applicant':
+                profile = user.applicant_profile
+                profile.github_username = self.cleaned_data.get('github_username', '')
+                from .utils import parse_github_skills
+                if profile.github_username:
+                    profile.skills = parse_github_skills(profile.github_username)
+                profile.save()
         return user

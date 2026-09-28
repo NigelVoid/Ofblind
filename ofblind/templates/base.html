@@ -11,7 +11,7 @@
         <a href="{% url 'users:signin' %}">Войти</a>
         {% else %}
         <nav>
-            <a>{{ request.user }}</a>
+            <a href="{% url 'users:profile_detail' pk=request.user.pk %}">{{ request.user }}</a>
             <a href="{% url 'users:logout' %}">выйти</a>
         </nav>
         {% endif %}

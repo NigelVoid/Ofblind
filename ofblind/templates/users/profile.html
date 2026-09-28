@@ -1,0 +1,31 @@
+<!-- templates/users/profile.html -->
+<h2>Профиль пользователя: {{ profile_user.username }}</h2>
+
+<p>Email: {{ profile_user.email }}</p>
+<p>Роль: {{ profile_user.get_status_display }}</p>
+
+<hr>
+
+{% if profile_user.status == 'applicant' %}
+    <h3>Данные соискателя</h3>
+    <p>GitHub: {{ profile_user.applicant_profile.github_username|default:"Не указан" }}</p>
+    
+    <h4>Спецификация (Навыки):</h4>
+    {% if skills_list %}
+        <ul>
+            {% for skill in skills_list %}
+                <li>{{ skill }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Навыки не найдены.</p>
+    {% endif %}
+
+{% elif profile_user.status == 'employer' %}
+    <h3>Данные работодателя</h3>
+    <p>Компания: {{ profile_user.employer_profile.company_name|default:"Не указана" }}</p>
+    <p>Сайт: {{ profile_user.employer_profile.website|default:"Не указан" }}</p>
+{% endif %}
+
+<hr>
+<a href="{% url 'main:home' %}">На главную</a>
