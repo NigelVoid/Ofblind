@@ -45,12 +45,15 @@ python manage.py createsuperuser
 >Обязательно меняйте данные на свои!
 
 >[!NOTE]
->EMAIL_PASSWORD — не пароль от аккаунта, а 16-значный код в Google App Passwords 
+>SECRET_KEY — секретный ключ шифрования  
+>EMAIL_USER — gmail почта с которой будут рассылаться письма  
+>EMAIL_PASSWORD — не пароль от аккаунта, а 16-значный код в Google App Passwords  
+>DEBUG — при разработке обязательно значение True  
 ```
-SECRET_KEY=yoursecretkey (секретный ключ шифрования)
-EMAIL_USER=yourmail@gmail.com (gmail почта с которой будут рассылаться письма)
+SECRET_KEY=yoursecretkey
+EMAIL_USER=yourmail@gmail.com
 EMAIL_PASSWORD=xxxx xxxx xxxx xxxx
-DEBUG=True (При разработке обязательно значение True)
+DEBUG=True
 ```
 ---
 

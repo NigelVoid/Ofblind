@@ -19,18 +19,31 @@ class CustomUser(AbstractUser):
         return self.username
 
 class ApplicantProfile(models.Model):
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='applicant_profile')
-    skills = models.TextField(blank=True, verbose_name="Навыки")
-    github_username = models.CharField(max_length=100, blank=True, verbose_name="GitHub")
-    resume = models.FileField(upload_to='resumes/', blank=True, null=True, verbose_name="Файл резюме")
+    user = models.OneToOneField(CustomUser,
+                                on_delete=models.CASCADE,
+                                related_name='applicant_profile')
+    skills = models.TextField(blank=True,
+                              verbose_name="Навыки")
+    github_username = models.CharField(max_length=100,
+                                       blank=True,
+                                       verbose_name="GitHub")
+    resume = models.FileField(upload_to='resumes/',
+                              blank=True,
+                              null=True,
+                              verbose_name="Файл резюме")
 
     def __str__(self):
         return f"Резюме соискателя: {self.user.username}"
 
 class EmployerProfile(models.Model):
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='employer_profile')
-    company_name = models.CharField(max_length=255, blank=True, verbose_name="Название компании")
-    website = models.URLField(blank=True, verbose_name="Сайт компании")
+    user = models.OneToOneField(CustomUser,
+                                on_delete=models.CASCADE,
+                                related_name='employer_profile')
+    company_name = models.CharField(max_length=255,
+                                    blank=True,
+                                    verbose_name="Название компании")
+    website = models.URLField(blank=True,
+                              verbose_name="Сайт компании")
 
     def __str__(self):
         return f"Компания: {self.company_name} ({self.user.username})"
