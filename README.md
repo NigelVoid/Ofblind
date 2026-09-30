@@ -48,7 +48,7 @@ python manage.py createsuperuser
 >SECRET_KEY — секретный ключ шифрования  
 >EMAIL_USER — gmail почта с которой будут рассылаться письма  
 >EMAIL_PASSWORD — не пароль от аккаунта, а 16-значный код в Google App Passwords  
->DEBUG — при разработке обязательно значение True
+>DEBUG — при разработке обязательно значение True  
 >GITHUB_TOKEN — токен профиля github для парсинга
 ```
 SECRET_KEY=yoursecretkey
